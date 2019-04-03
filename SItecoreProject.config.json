@@ -1,0 +1,108 @@
+{
+    "environments": {
+        "common": {
+            "prefix": {
+                "sitecore": "S",
+                "master": "E"
+            },
+            "patterns": {
+                "url": "^https?:\\/\\/(?:.*\\.)?({1})(?:\\.com)?\\/(.*)$",
+                "info": ".*({\\s*\\\"itemId\\\"\\:.+}).*"
+            },
+            "domains": {
+                "web": "^{prefix}\\.({version})\\.com$",
+                "master": "^{prefix}\\.({version})\\.com$",
+                "sitecore": "^.*(sitecore).*$"
+            },
+            "urlFormat": {
+                "web": "https://{prefix}.{version}.com/{path}",
+                "master": "https://{prefix}.{version}.com/{path}",
+                "solr": "http://{prefix}slr01:8983",
+                "favIcon": {
+                    "web": "https://img.icons8.com/metro/64/{color}/doctors-bag.png",
+                    "master": "https://img.icons8.com/metro/64/{color}/toolbox.png"
+                }
+            },
+            "versions": [
+                "maindomain", "seconddomain"
+            ],
+            "display": {
+                "color": {
+                    "common": "b12e32",
+                    "specific": "174f6d"
+                }
+            }
+        },
+        "local": {
+            "name": "Local",
+            "params": {
+                "title": "L"
+            },
+            "domains": {
+                "web": "^({version})$",
+                "master": "^({version})$"
+            },
+            "urlFormat": {
+                "web": "http://{version}/{path}",
+                "master": "http://{version}/{path}",
+                "solr": "http://localhost:8983"
+            },
+            "display": {
+                "icon": "https://img.icons8.com/metro/64/2ecc71/doctors-bag.png",
+                "color": "2ecc71"
+            }
+        },
+        "test": {
+            "name": "Test (SIT)",
+            "params": {
+                "web": "test",
+                "master": "testedit",
+                "solr": "test",
+                "title": "T",
+                "build": "???"
+            },
+            "display": {
+                "color": "3498db"
+            }
+        },
+        "uat": {
+            "name": "UAT",
+            "params": {
+                "web": "uat",
+                "master": "uatedit",
+                "title": "U",
+                "solr": "uat"
+            },
+            "display": {
+                "color": "e67e22"
+            }
+        },
+        "prod": {
+            "name": "Production",
+            "params": {
+                "web": "www",
+                "master": "edit",
+                "title": "P",
+                "solr": "prduse"
+            },
+            "display": {
+                "color": "e74c3c"
+            }
+        }
+    },
+	"items" : [
+		{"name" : "Powershell", "Id" : "959E2887-9D7A-42F1-88C7-C372FEC0345C" },
+		{"name" : "Translations", "Id" : "DB7A945B-422B-4FCE-9E4F-302F5618B275" }		
+	],
+	projectPages : [
+		{ "name" : "Main", "url" : "/Main" }
+	],
+	"diagnostics": {
+		"sitecore": "c:\\Projects\\SampleProject\\Data\\logs\\",
+		"solr": "c:\\solr-5.1.0\\server\\logs\\"
+	},
+	"iis" : {
+		"appPool" : "SampleProject"
+	},
+	"srcPath": "c:\\Projects\\SampleProject"
+}
