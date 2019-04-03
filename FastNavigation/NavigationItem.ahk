@@ -2,14 +2,14 @@ class NavigationItem {
     SubItems := []
 
     __New(letter,  description){
-        Log("Creating NavigationItem {1} '{2}'", [letter ,description])
+        ; Log("Creating NavigationItem {1} '{2}'", [letter ,description])
         this.Letter := letter
         this.Description := description
         this.Level := 0
     }
 
     AddItem(newItem){
-        Log("Adding item {1} '{2}'", [newItem.Letter ,newItem.Description])
+        ; Log("Adding item {1} '{2}' to {3} {4}", [newItem.Letter ,newItem.Description, this.Letter, this.Description])
         newItem.Parent := this
         newItem.Level := this.Level + 1
         this.SubItems.Push(newItem)
@@ -25,7 +25,7 @@ class NavigationItem {
     }
 
     ShowCommandsAndLaunchSelected(){
-        Log("ShowCommandsAndLaunchSelected() ... ", [])
+        ; Log("ShowCommandsAndLaunchSelected() ... ", [])
         this.AssignRoot()
         this.ShowHelp()
 
@@ -38,7 +38,7 @@ class NavigationItem {
     ShowHelp(){
         title := this.GetTitle()
         text := this.GetCommandsList()
-        Log("Command list text {1}", [text])
+        ; Log("Command list text {1}", [text])
         this.ShowSplash(title, text)
     }
 

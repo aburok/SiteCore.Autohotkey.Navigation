@@ -1,7 +1,10 @@
 class GuidFormatMenuItem extends NavigationItem {
 
     __New(letter, guidFormat){
+        description := "Guid format " . guidFormat
+
         base.__New(letter, description)
+
         this.GuidFormat := guidFormat
         this.GuidFormatter := new GuidFormatter()
     }

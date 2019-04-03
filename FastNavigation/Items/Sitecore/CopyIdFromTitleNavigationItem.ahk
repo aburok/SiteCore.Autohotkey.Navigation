@@ -5,11 +5,11 @@ class CopyIdFromTitleNavigationItem extends NavigationItem{
     }
 
     ActivateItem(){
-        browser := this.Root.Config.Browser.Patterns
-        item := this.titleParse.GetInfo(browser.info)
+        infoPattern := this.Root.Config.Common.Patterns.Info
+        item := this.titleParse.GetInfo(infoPattern)
         this.Root.Item := item
 
-        Log("ItemID : {1} Template: {2} Path: [{3}], Media [{4}] ", [item.itemId, item.templateId, item.Path, item.MediaId])
+        Log("Parse ItemID : {1} Template: {2} Path: [{3}], Media [{4}] ", [item.itemId, item.templateId, item.Path, item.MediaId])
 
         base.ActivateItem()
     }

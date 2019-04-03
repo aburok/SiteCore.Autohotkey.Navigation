@@ -13,7 +13,7 @@ class ProjectUrlItem extends WebsiteMenuItem {
     GetFormatArgs(){
         formatDomain := this.Root.Environment.UrlPattern.Format
         domain := Format(formatDomain, this.EnvironmentName, "")
-        Log("[ProjectUrlItem] {1} , {2} , {3} ", [this.EnvironmentName, domain, formatDomain])
+        Log("[ProjectUrlItem] {1} , {2} , {3} ", [this.Root.Environment.Name, domain, formatDomain])
         formatArgs := [domain]
         Return formatArgs
     }

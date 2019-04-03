@@ -13,7 +13,6 @@ class FastNavigation extends NavigationItem {
 
         base.__New(shortcut, description)
 
-        this.rootItem := rootItem
         this.Root := this
 
         this.Context := {}
@@ -31,7 +30,7 @@ class FastNavigation extends NavigationItem {
         Log("Search for current Env... [{1}] Config Dump {2}", [pattern])
         if(info <> "") {
             this.Environment := this.Config.GetEnvironment(info.domain, info.href)
-            Log("Current Environment is {1}", [this.Environment.Name])
+            Log("Current Environment is {1}, host {2} href {3}", [this.Environment.Name, info.domain, info.href])
         }
     }
 
@@ -42,6 +41,7 @@ class FastNavigation extends NavigationItem {
             envMenu := new EnvironmentNavigationItem(environment).AddItemList(editItems)
             this.AddItem(envMenu)
         }
+        return this
     }
 
     AddCommonPages()

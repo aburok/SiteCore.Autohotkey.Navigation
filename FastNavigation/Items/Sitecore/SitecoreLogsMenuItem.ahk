@@ -10,7 +10,7 @@ class SitecoreLogsMenuItem extends WebsiteMenuItem {
         ; InputBox, DaysBack, Insert numbers of days back
         ; https://www.autohotkey.com/docs/commands/FormatTime.htm
         FormatTime, TimeString,, yyyyMMdd
-        return [this.Root.Environment.EditDomain, TimeString]
+        return [this.Root.Environment.Master.Url, TimeString]
     }
 }
 

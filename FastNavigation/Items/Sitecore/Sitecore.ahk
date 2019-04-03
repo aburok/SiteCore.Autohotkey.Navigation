@@ -61,13 +61,15 @@ GetYankMenu(){
     return yankMenu
 }
 
-GetDiagnosticFilesOnLocal() {
-    diagnostics := new NavigationItem("d", "Diagnostic")
+GetDiagnosticFilesOnLocal(config) {
+
+    diagnosticsMenu := new NavigationItem("d", "Diagnostic")
         .AddItem(new LatestFileOpenerNavigationItem("l", "Sitecore Log", config.diagnostics.sitecore, "log.*.txt"))
         .AddItem(new LatestFileOpenerNavigationItem("s","Sitecore Search Log",  config.diagnostics.sitecore, "Search.log.*.txt"))
         .AddItem(new LatestFileOpenerNavigationItem("r","IIS request Log",  config.diagnostics.sitecore, "Search.log.*.txt"))
         .AddItem(new LatestFileOpenerNavigationItem("i","SOLR Log",  config.diagnostics.solr, "solr.log"))
-    return diagnostics
+
+    return diagnosticsMenu
 }
 
 ; https://doc.sitecore.com/developers/90/sitecore-experience-management/en/the-restful-api-for-the-itemservice.html

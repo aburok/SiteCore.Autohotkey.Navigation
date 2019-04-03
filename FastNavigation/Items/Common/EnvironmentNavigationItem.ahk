@@ -1,6 +1,6 @@
 class EnvironmentNavigationItem extends NavigationItem {
     __New(environment){
-        letter := environment.titlePrefix
+        letter := environment.params.title
         StringLower, letter, letter
         base.__New(letter, environment.name)
         this.Environment := environment
@@ -8,7 +8,7 @@ class EnvironmentNavigationItem extends NavigationItem {
 
     BeforeActivation() {
         this.Root.Environment := this.Environment
-        Log("Setting Edit Environment to : {1}, Root Name {2}", [this.Root.Environment.EditDomain, this.Root.Description])
+        Log("Setting Edit Environment to : {1}, Root Name {2}", [this.Root.Environment.Name, this.Root.Description])
     }
 }
 

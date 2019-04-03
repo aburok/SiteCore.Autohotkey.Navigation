@@ -26,7 +26,8 @@ class WindowTitleParser {
         try {
             item := Jxon_Load(itemInfoText)
         } catch {
-        item := ""
+            Log("Error while parsing itemInfoText {1}", [itemInfoText])
+            item := ""
         }
         return item
     }

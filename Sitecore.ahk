@@ -1,3 +1,6 @@
+#Warn All
+#NoEnv
+
 #Include <Hotkeys>
 
 #Include <Jxon>
@@ -22,9 +25,9 @@ return
 handleLinksMenu(){
     global
 
-    secondLevelItems.Push(new WebsiteMenuItem("j", "JIRA",  config.urls.jira . "/issues/?filter=myopenissues"))
-    secondLevelItems.Push(new WebsiteMenuItem("b", "Team City", config.urls.teamcity))
-    secondLevelItems.Push(new WebsiteMenuItem("s", "TFS",  config.urls.tfs))
+    ; secondLevelItems.Push(new WebsiteMenuItem("j", "JIRA",  config.urls.jira . "/issues/?filter=myopenissues"))
+    ; secondLevelItems.Push(new WebsiteMenuItem("b", "Team City", config.urls.teamcity))
+    ; secondLevelItems.Push(new WebsiteMenuItem("s", "TFS",  config.urls.tfs))
 
     editItems := []
     editItems.Push(new SeparatorMenuItem())
@@ -45,15 +48,16 @@ handleLinksMenu(){
 
     editItems.Push(new NavigationItem("i", "Open Item"))
 
+    secondLevelItems := []
     secondLevelItems.Push(new CopyFilePathNavigationItem("f"))
 
-    diagnostics := GetDiagnosticFilesOnLocal()
 
+    mainNavigation := new FastNavigation("m", "Project Navigation")
+    Log("Showing root menu items [{1}]", [mainNavigation.Description])
 
-    rootItem := new FastNavigation("m", "Project Navigation")
-    Log("Showing root menu items [{1}]", [rootItem.Description])
+    diagnostics := GetDiagnosticFilesOnLocal(mainNavigation.Config)
 
-    rootItem.AddItem(new SeparatorMenuItem())
+    mainNavigation.AddItem(new SeparatorMenuItem())
         .AddAllEnvironments(editItems)
         .AddItem(new SeparatorMenuItem())
         .AddItem(diagnostics)
@@ -64,14 +68,14 @@ handleLinksMenu(){
         ; .AddItem(new TranslateItem("q"))
         ; .AddItem(new AppPoolRecycleMenu("r", config.iis.appPool))
 
-    Log("Showing root menu items [{1}]", [rootItem.Description])
-    if(rootItem.Environment){
-        rootItem.AddItem(new SeparatorMenuItem())
-        rootItem.AddItemList(editItems)
+    Log("Showing root menu items [{1}]", [mainNavigation.Description])
+    if(mainNavigation.Environment){
+        mainNavigation.AddItem(new SeparatorMenuItem())
+        mainNavigation.AddItemList(editItems)
     }
 
-    Log("Showing root menu items [{1}]", [rootItem.Description])
-    rootItem.ShowCommandsAndLaunchSelected()
+    Log("Showing root menu items [{1}]", [mainNavigation.Description])
+    mainNavigation.ShowCommandsAndLaunchSelected()
 }
 
 GetBranchNameFromIssueTitle(){

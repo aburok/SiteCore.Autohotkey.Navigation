@@ -4,7 +4,8 @@ class SitecoreEditPageMenuItem extends WebsiteMenuItem {
     }
 
     GetDomain(){
-        return this.Root.Environment.EditDomain
+        Log("GetDomain {1}", this.Root.Environment.Master.Url)
+        return this.Root.Environment.Master.Url
     }
 
     GetFormatArgs(){

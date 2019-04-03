@@ -2,9 +2,7 @@ class AddressNavigationItem extends NavigationItem {
 
     GetDomainRegexp(){
         regexFormat := this.Root.Config.Browser.Patterns.Url
-        jsonConfig := Json.Dump(this.Root.Config)
-        jsondomains := Json.Dump(this.Root.Config.OtherDomains)
-        ; Log("[AddressChangeItem] config : {1} {2} ", [jsonConfig, jsondomains])
+
         domains := this.Root.Config.OtherDomains
         joinedDomains := StringJoin(domains, "|")
         regex := Format(regexFormat, joinedDomains)

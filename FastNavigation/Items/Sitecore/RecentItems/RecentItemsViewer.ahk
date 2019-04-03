@@ -1,5 +1,5 @@
 class RecentItemsViewer {
-	static itemStorePath:= USERPROFILE . "\sitecore.navigation.recent.json"
+	static itemStorePath:= A_MyDocuments . "\sitecore.navigation.recent.json"
 
     __New(configPath){
         Log("RecentItemsViewer constructor", [])
@@ -52,9 +52,9 @@ class RecentItemsViewer {
     }
 
     LoadRecentItems(){
-        file := FileOpen(this.itemStorePath, "r")
-        this.itemJson := file.Read()
-        file.Close()
+        this.itemStorefile := FileOpen(this.itemStorePath, "r")
+        this.itemJson := this.itemStorefile.Read()
+        this.itemStorefile.Close()
         if(this.itemJson = ""){
             this.itemJson := "{""items"" : []}"
         }
@@ -68,9 +68,9 @@ class RecentItemsViewer {
 
     StoreItems(){
         this.itemsJson := Jxon_Dump(this.recentItems)
-        file := FileOpen(this.itemStorePath, "w")
-        file.Write(this.itemsJson)
-        file.Close()
+        this.itemStorefile:= FileOpen(this.itemStorePath, "w")
+        this.itemStorefile.Write(this.itemsJson)
+        this.itemStorefile.Close()
     }
 
     DisplayItem(item){
