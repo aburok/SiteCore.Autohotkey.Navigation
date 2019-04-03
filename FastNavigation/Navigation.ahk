@@ -9,7 +9,7 @@
 
 
 class FastNavigation extends NavigationItem {
-    __New(shortcut, description, configPath){
+    __New(shortcut, description){
 
         base.__New(shortcut, description)
 
@@ -19,8 +19,7 @@ class FastNavigation extends NavigationItem {
         this.Context := {}
         this.titleParse := new WindowTitleParser()
 
-        this.ConfigPath := configPath
-        this.Config := new ConfigurationReader(configPath)
+        this.Config := new ConfigurationReader()
 
         this.GetCurrentEnvironment()
     }

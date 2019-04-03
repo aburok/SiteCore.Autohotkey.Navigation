@@ -1,10 +1,10 @@
-#Include %A_ScriptDir%\Common\Common.ahk
-#Include %A_ScriptDir%\FastNavigation\Navigation.ahk
-
 #Include <Hotkeys>
 
 #Include <Jxon>
 #Include <JSON>
+
+#Include %A_ScriptDir%\Common\Common.ahk
+#Include %A_ScriptDir%\FastNavigation\Navigation.ahk
 
 ; The FileName parameter may optionally be preceded by *i and a single space,
 ;   which causes the program to ignore any failure to load the included file.
@@ -50,8 +50,10 @@ handleLinksMenu(){
     diagnostics := GetDiagnosticFilesOnLocal()
 
 
-    rootItem := new FastNavigation("m", "Project Navigation", configPath)
-        .AddItem(new SeparatorMenuItem())
+    rootItem := new FastNavigation("m", "Project Navigation")
+    Log("Showing root menu items [{1}]", [rootItem.Description])
+
+    rootItem.AddItem(new SeparatorMenuItem())
         .AddAllEnvironments(editItems)
         .AddItem(new SeparatorMenuItem())
         .AddItem(diagnostics)
@@ -59,9 +61,10 @@ handleLinksMenu(){
         .AddItem(new SeparatorMenuItem())
         .AddItemList(secondLevelItems)
         .AddItem(GetGuidFormat())
-        .AddItem(new TranslateItem("q"))
+        ; .AddItem(new TranslateItem("q"))
         ; .AddItem(new AppPoolRecycleMenu("r", config.iis.appPool))
 
+    Log("Showing root menu items [{1}]", [rootItem.Description])
     if(rootItem.Environment){
         rootItem.AddItem(new SeparatorMenuItem())
         rootItem.AddItemList(editItems)

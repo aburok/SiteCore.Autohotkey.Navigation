@@ -1,8 +1,9 @@
 class ConfigurationReader {
 	static configPathFile := USERPROFILE . "\sitecore.navigation.ini"
-	
-    __New(fileName){
+
+    __New(){
         this.FileName := this._GetConfigPath(fileName)
+        Log("Loading configuraton from {1}", [this.FileName])
         this._ReadConfiguration()
     }
 
@@ -17,17 +18,10 @@ class ConfigurationReader {
 
         return ""
     }
-	
-	_GetConfigPath(fileName){
-		if(fileName <> "") {
-			if(FileExist(fileName) <> ""){
-				Log("reading configuration from file name {1}", [fileName])
-				return fileName
-			}
-		}
-		
+
+	_GetConfigPath(){
 		configIniPath := this.configPathFile
-	
+
 		if (FileExist(configIniPath) <> ""){
 			Log("reading configuration from configPathFile {1}", [configIniPath])
 			IniRead, pathToConfig, %configIniPath%, ConfigPath, configPath
